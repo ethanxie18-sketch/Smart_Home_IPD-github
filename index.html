@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="././style_library/style.css">
+</head>
+<body>
+    <div class="overview-container">
+        <aside class="sidebar">
+
+            <!-- Logo 区域 -->
+            <div class="sidebar-logo">
+                <img src="./style_library/icons/home.svg" class="logo-icon">
+                <span class="logo-text">Housipsm</span>
+            </div>
+
+            <!-- 导航菜单 -->
+            <nav class="sidebar-menu">
+                <button class="menu-item active" onclick="location.href='./index.html'">
+                    <img src="../../style_library/icons/dashboard.svg" class="menu-icon">
+                    <span>Dashboard</span>
+                </button>
+                
+                <button class="menu-item" onclick="location.href='./src/Utilities Consumption/Utilities_Consumption.html'">
+                    <img src="../../style_library/icons/utilities.svg" class="menu-icon">
+                    <span>Utilities Consumption</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/recent.svg" class="menu-icon">
+                    <span>Recent</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/bookmark.svg" class="menu-icon">
+                    <span>Bookmark</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/download.svg" class="menu-icon">
+                    <span>Downloaded</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/support.svg" class="menu-icon">
+                    <span>Support</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/setting.svg" class="menu-icon">
+                    <span>Setting</span>
+                </button>
+            </nav>
+
+        </aside>
+        <div class="overview-main">
+            <header class="header">
+
+                <!-- 左侧区域 -->
+                <div class="header-left">
+                    <h1 class="header-title">Dashboard</h1>
+
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search type of keywords" id="searchInput">
+                        <button id="searchBtn">
+                            <img src="../../style_library/icons/search.svg" alt="search">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 右侧区域 -->
+                <div class="header-right">
+                    <button class="icon-btn header-icon" id="helpBtn">
+                        <img src="../../style_library/icons/help.svg" alt="">
+                    </button>
+
+                    <button class="icon-btn header-icon" id="notificationBtn">
+                        <img src="../../style_library/icons/bell.svg" alt="">
+                    </button>
+
+                    <div class="user-area">
+                        <img src="../../style_library/icons/user.svg" class="user-avatar">
+
+                        <div class="user-name">Leona</div>
+
+                        <button id="arrowBtn" class="arrow-down">▼</button>
+
+                        <!-- 下拉菜单 -->
+                        <ul class="user-menu" id="userMenu">
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li>Logout</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </header> 
+
+            <!-- ================= Chips ================= -->  
+            <section class="room-chips">
+                <button class="chip active">Living Room</button>
+                <button class="chip">Kitchen Room</button>
+                <button class="chip">Bed Room</button>
+                <button class="chip">Movie Room</button>
+                <button class="chip">Game Room</button>
+
+                <button class="chip-add">+ Add</button>
+            </section>
+
+
+                <!-- ================= air condition ================= -->  
+            <section class="ac-card">
+
+                <div class="ac-header">
+                    <span class="ac-title">Air Conditioner</span>
+                    <button class="ac-toggle" id="acToggle"></button>
+                </div>
+
+                <div class="ac-temp-display">
+                    <span id="acTempValue">24</span>°C
+                    <div class="ac-temp-label">Temperature</div>
+                </div>
+
+                <div class="ac-slider-container">
+                    <span class="min-temp">32°C</span>
+
+                    <input type="range" min="16" max="32" value="24" id="acSlider"/>
+
+                    <span class="max-temp">16°C</span>
+                </div>
+
+                <div class="ac-modes">
+                    <button class="mode-btn active">❄</button>
+                    <button class="mode-btn">⚡</button>
+                    <button class="mode-btn">🌀</button>
+                    <button class="mode-btn">💧</button>
+                    <button class="mode-btn">🌙</button>
+                </div>
+
+            </section>
+            <!-- ================= usage status ================= -->  
+            <section class="usage-status">
+
+                <div class="usage-header">
+                    <h2>Usage Status</h2>
+
+                    <div class="usage-controls">
+                    <button class="btn icon-btn" id="settingsBtn">⚙</button>
+                    <button class="btn icon-btn active" id="chartBtn">📊</button>
+
+                    <div class="dropdown">
+                        <button class="btn dropdown-btn" id="dateBtn">
+                        Today ▼
+                        </button>
+                        <ul class="dropdown-menu" id="dateMenu">
+                        <li data-range="today">Today</li>
+                        <li data-range="5days">Last 5 Days</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="usage-data">
+                    <div class="usage-block">
+                    <div class="label">Total spend</div>
+                    <div class="value">35.02 Kwh</div>
+                    </div>
+                    <div class="usage-block">
+                    <div class="label">Total hours</div>
+                    <div class="value">32h</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-chart-container">
+                    <div class="dashboard-chart">
+
+                        <div class="dashboard-bar" style="height: 40%;">
+                            <div class="dashboard-tooltip">Mon – 10 kWh</div>
+                        </div>
+                        <div class="dashboard-bar" style="height: 55%;">
+                            <div class="dashboard-tooltip">Tue – 14 kWh</div>
+                        </div>
+                        <div class="dashboard-bar" style="height: 80%;">
+                            <div class="dashboard-tooltip">Wed – 22 kWh</div>
+                        </div>
+                        <div class="dashboard-bar" style="height: 65%;">
+                            <div class="dashboard-tooltip">Thu – 18 kWh</div>
+                        </div>
+                        <div class="dashboard-bar" style="height: 45%;">
+                            <div class="dashboard-tooltip">Fri – 12 kWh</div>
+                        </div>
+                        <div class="dashboard-bar" style="height: 70%;">
+                            <div class="dashboard-tooltip">Sat – 20 kWh</div>
+                        </div>
+                        <div class="dashboard-bar" style="height: 35%;">
+                            <div class="dashboard-tooltip">Sun – 9 kWh</div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </section>
+            
+            <!-- ================= devices Component ================= -->        
+            <section class="devices">
+            <h2 class="devices-heading">My Devides</h2>
+
+            <div class="devices-grid">
+
+                <!-- card 1 -->
+                <div class="device-card">
+                <div class="device-header">
+                    <div class="device-icon">
+                    <img src="../../style_library/icons/tv.svg" alt="">
+                    </div>
+                    <div class="device-toggle off"></div>
+                </div>
+
+                <div class="device-main">
+                    <div class="device-name">Smart TV</div>
+                    <div class="device-sub">Active for 3 hours</div>
+                </div>
+
+                <div class="device-footer">
+                    <span class="device-dash">—</span>
+                    <span class="device-power">5Kwh</span>
+                </div>
+                </div>
+
+                <!-- 再复制 5 个 device-card 即可 -->
+            </div>
+            </section>
+                <!-- ================= Light Component ================= -->
+            <section id="light-demo">
+                <h2>Light Component</h2>
+
+                <div class="light-card">
+
+                    <!-- row 1 -->
+                    <div class="light-row">
+                        <div class="light-left">
+                            <div class="light-icon">
+                                <img src="../../style_library/icons/sun.svg" alt="">
+                            </div>
+                            <span class="light-name">Light 1</span>
+                        </div>
+
+                        <div class="light-center">
+                            <div class="dot-progress" data-value="0">
+                                <!-- 14 dots -->
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="percentage">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- row 2 / row 3 / row 4 / row 5 以此类推… -->
+                </div>
+            </section>
+
+
+        </div>
+            
+        </div>
+<script src="../../style_library/main.js" defer></script>
+</body>
+
+</html>

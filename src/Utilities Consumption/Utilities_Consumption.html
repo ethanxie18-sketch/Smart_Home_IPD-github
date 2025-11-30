@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Utilities Consumption</title>
+    <link rel="stylesheet" href="../../style_library/style.css">
+</head>
+<body>
+
+<div class="overview-container">
+
+    <!-- ============= Sidebar ============= -->
+    <aside class="sidebar">
+        <!-- Logo 区域 -->
+            <div class="sidebar-logo">
+                <img src="../../style_library/icons/home.svg" class="logo-icon">
+                <span class="logo-text">Housipsm</span>
+            </div>
+
+            <!-- 导航菜单 -->
+            <nav class="sidebar-menu">
+                <button class="menu-item" onclick="location.href='../../index.html'">
+                    <img src="../../style_library/icons/dashboard.svg" class="menu-icon">
+                    <span>Dashboard</span>
+                </button>
+                
+                <button class="menu-item active" onclick="location.href='src\Utilities Consumption\Utilities_Consumption.html'">
+                    <img src="../../style_library/icons/utilities.svg" class="menu-icon">
+                    <span>Utilities Consumption</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/recent.svg" class="menu-icon">
+                    <span>Recent</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/bookmark.svg" class="menu-icon">
+                    <span>Bookmark</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/download.svg" class="menu-icon">
+                    <span>Downloaded</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/support.svg" class="menu-icon">
+                    <span>Support</span>
+                </button>
+
+                <button class="menu-item">
+                    <img src="../../style_library/icons/setting.svg" class="menu-icon">
+                    <span>Setting</span>
+                </button>
+            </nav>
+    </aside>
+    <div class="overview-main">
+        <!-- ============= Header ============= -->
+        <header class="header">
+        <!-- 左侧区域 -->
+                    <div class="header-left">
+                        <h1 class="header-title">Utilities</h1>
+
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search type of keywords" id="searchInput">
+                            <button id="searchBtn">
+                                <img src="../../style_library/icons/search.svg" alt="search">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 右侧区域 -->
+                    <div class="header-right">
+                        <button class="icon-btn header-icon" id="helpBtn">
+                            <img src="../../style_library/icons/help.svg" alt="">
+                        </button>
+
+                        <button class="icon-btn header-icon" id="notificationBtn">
+                            <img src="../../style_library/icons/bell.svg" alt="">
+                        </button>
+
+                        <div class="user-area">
+                            <img src="../../style_library/icons/user.svg" class="user-avatar">
+
+                            <div class="user-name">Leona</div>
+
+                            <button id="arrowBtn" class="arrow-down">▼</button>
+
+                            <!-- 下拉菜单 -->
+                            <ul class="user-menu" id="userMenu">
+                                <li>Profile</li>
+                                <li>Settings</li>
+                                <li>Logout</li>
+                            </ul>
+                        </div>
+
+                    </div>
+        </header>
+
+        <!-- ============= 内容区开始 ============= -->
+
+        <!-- Title -->
+        <!-- Header: title + type switch -->
+        <section class="bill-header" style="grid-column: span 12;">
+            <div class="bill-title-group">
+                <h2 class="devices-heading">Utilities Consumption</h2>
+                <p class="bill-subtitle">Track your electricity, water and gas usage this month.</p>
+                 
+                
+
+                <div class="bill-tabs">
+                    <button class="bill-chip active">Electricity</button>
+                    <button class="bill-chip">Water</button>
+                    <button class="bill-chip">Gas</button>
+                </div>
+            </div>
+            <button class="bill-details-btn" onclick="location.href='../Utilities Consumption/Utilities_Details.html'">
+                    Details
+                </button>
+        </section>
+
+
+
+
+        <!-- Month Chips -->
+        <section class="bill-month-chips room-chips" style="grid-column: span 12;">
+            <button class="chip active">January</button>
+            <button class="chip">February</button>
+            <button class="chip">March</button>
+            <button class="chip">April</button>
+            <button class="chip">May</button>
+            <button class="chip">June</button>
+            <button class="chip">July</button>
+            <button class="chip">August</button>
+            <button class="chip">September</button>
+            <button class="chip">October</button>
+            <button class="chip">November</button>
+            <button class="chip">December</button>
+        </section>
+
+        <!-- Overview Cards（3 列） -->
+        <section class="bill-overview-cards" style="grid-column: span 12;">
+
+            <!-- Card 1: 本月用电 + 细节 -->
+            <div class="bill-card">
+                <div class="bill-card-header">
+                    <span class="label">This Month Usage</span>
+                    <span class="bill-badge">January</span>
+                </div>
+
+                <div class="value">241 kWh</div>
+
+                <div class="bill-meta">
+                    <span class="bill-pill up">+ 6.2% vs last month</span>
+                    <span class="bill-pill">≈ 7.8 kWh / day</span>
+                </div>
+            </div>
+
+            <!-- Card 2: 预估费用 + 单价等 -->
+            <div class="bill-card">
+                <div class="bill-card-header">
+                    <span class="label">Estimated Cost</span>
+                    <span class="bill-badge">Current plan</span>
+                </div>
+
+                <div class="value">$ 36.5</div>
+
+                <div class="bill-meta">
+                    <span class="bill-pill">Unit price: $0.15 / kWh</span>
+                    <span class="bill-pill">Auto-pay: Enabled</span>
+                </div>
+            </div>
+
+            <!-- Card 3: 趋势对比（替代 Last Month） -->
+            <div class="bill-card">
+                <div class="bill-card-header">
+                    <span class="label">Trend vs Last Month</span>
+                    <span class="bill-badge">Dec → Jan</span>
+                </div>
+
+                <div class="value">- 13.4 kWh</div>
+
+                <div class="bill-meta">
+                    <span class="bill-pill">Last month: 227 kWh</span>
+                    <span class="bill-pill down">- 5.3% total usage</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Electricity Usage -->
+        <section class="usage-status" style="grid-column: span 12;">
+            <div class="usage-header">
+                <h3>Electricity Usage</h3>
+                <div class="usage-controls">
+                    <button class="btn">Day</button>
+                    <button class="btn active">Week</button>
+                    <button class="btn">Month</button>
+                </div>
+            </div>
+
+            <div class="usage-data">
+                <div>
+                    <div class="label">Today</div>
+                    <div class="value">12.7 kWh</div>
+                </div>
+                <div>
+                    <div class="label">This Week</div>
+                    <div class="value">64.1 kWh</div>
+                </div>
+            </div>
+
+            <!-- 新：左右布局，左柱状图 + 右饼图 -->
+            <div class="usage-layout">
+
+                <!-- 左：柱状图（原来的内容搬进来） -->
+                <div class="utilities-chart-container">
+                    <div class="utilities-chart">
+
+                        <div class="chart-item">
+                            <div class="bar bar-high" style="height: 60%;">
+                                <div class="tooltip">Mon – 12.7 kWh</div>
+                            </div>
+                            <span class="chart-label">Mon</span>
+                        </div>
+
+                        <div class="chart-item">
+                            <div class="bar bar-medium" style="height: 80%;">
+                                <div class="tooltip">Tue – 15.3 kWh</div>
+                            </div>
+                            <span class="chart-label">Tue</span>
+                        </div>
+
+                        <div class="chart-item">
+                            <div class="bar bar-medium" style="height: 40%;">
+                                <div class="tooltip">Wed – 8.2 kWh</div>
+                            </div>
+                            <span class="chart-label">Wed</span>
+                        </div>
+
+                        <div class="chart-item">
+                            <div class="bar bar-high" style="height: 90%;">
+                                <div class="tooltip">Thu – 18.5 kWh</div>
+                            </div>
+                            <span class="chart-label">Thu</span>
+                        </div>
+
+                        <div class="chart-item">
+                            <div class="bar bar-medium" style="height: 70%;">
+                                <div class="tooltip">Fri – 14.2 kWh</div>
+                            </div>
+                            <span class="chart-label">Fri</span>
+                        </div>
+
+                        <div class="chart-item">
+                            <div class="bar bar-medium" style="height: 45%;">
+                                <div class="tooltip">Sat – 9.1 kWh</div>
+                            </div>
+                            <span class="chart-label">Sat</span>
+                        </div>
+
+                        <div class="chart-item">
+                            <div class="bar bar-medium" style="height: 65%;">
+                                <div class="tooltip">Sun – 12.4 kWh</div>
+                            </div>
+                            <span class="chart-label">Sun</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 右：水电气费用占比饼图 -->
+                <aside class="usage-pie-card">
+                    <h4>Cost Distribution</h4>
+                    <p class="subtitle">Electricity, water and gas this month.</p>
+
+                    <div class="pie-wrapper">
+                        <div class="pie-chart"></div>
+                        <div class="pie-center">
+                            <span class="pie-value">$ 86.4</span>
+                            <span class="pie-label">Total cost</span>
+                        </div>
+                    </div>
+
+                    <ul class="pie-legend">
+                        <li class="usage-legend-item" data-type="elec">
+                            <div class="legend-left">
+                                <span class="legend-dot elec"></span>
+                                <span>Electricity</span>
+                            </div>
+                            <span class="legend-percent">52%</span>
+                        </li>
+                        <li class="usage-legend-item" data-type="water">
+                            <div class="legend-left">
+                                <span class="legend-dot water"></span>
+                                <span>Water</span>
+                            </div>
+                            <span class="legend-percent">28%</span>
+                        </li>
+                        <li class="usage-legend-item" data-type="gas">
+                            <div class="legend-left">
+                                <span class="legend-dot gas"></span>
+                                <span>Gas</span>
+                            </div>
+                            <span class="legend-percent">20%</span>
+                        </li>
+                    </ul>
+
+                </aside>
+
+            </div>
+        </section>
+
+    </div>
+    <!-- ============= 内容区结束 ============= -->
+
+</div>
+<script src="../../style_library/main.js" defer></script>
+</body>
+</html>
