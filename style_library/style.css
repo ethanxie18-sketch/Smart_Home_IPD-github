@@ -1,0 +1,1808 @@
+/* ========== Global Reset & Base ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #0A0A0A;
+  color: #E8E9ED;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ========== Page Layout ========== */
+
+.overview-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px;
+  background: #0A0A0A;
+  display: grid;
+  grid-template-columns: 260px 1fr; /* 左侧 Sidebar + 右侧内容 */
+  column-gap: 24px;
+  row-gap: 24px;
+  box-sizing: border-box;
+}
+
+/* 右侧 12 列网格 */
+.overview-main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  align-items: stretch; /* 同一行的格子高度拉齐 */
+}
+
+/* ========== Sidebar ========== */
+
+.sidebar {
+  width: 100%; /* 吃满左侧 260px 这列 */
+  min-height: calc(100vh - 48px);
+  background: #050505;
+  color: #fff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-radius: 0 20px 20px 0;
+  box-sizing: border-box;
+  position: sticky;
+  top: 24px;         /* 和 overview-container 的 padding 对齐 */
+  align-self: flex-start;
+}
+
+/* Logo 区域 */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* 导航菜单 */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 每个菜单项 */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  font-size: 15px;
+  background: transparent;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+
+.menu-icon {
+  width: 20px;
+  opacity: 0.7;
+}
+
+/* Hover 效果 */
+.menu-item:hover {
+  background: #111;
+  color: #ccc;
+}
+
+/* Active 选中效果 */
+.menu-item.active {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+  color: #000;
+  font-weight: 600;
+}
+
+.menu-item.active .menu-icon {
+  opacity: 1;
+  filter: brightness(0.5);
+}
+
+/* ========== Header ========== */
+
+.header {
+  grid-column: 1 / 13;    /* 占满 12 列 */
+  width: 100%;
+  height: 100px;
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  border-radius: 12px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* 左侧 */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* 搜索框 */
+.search-bar {
+  width: 340px;
+  height: 40px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 右侧 */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 图标按钮 */
+.header-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s;
+}
+
+.header-icon:hover {
+  background: #333;
+}
+
+.header-icon img {
+  width: 18px;
+}
+
+/* 用户区域 */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #aaa;
+}
+
+.user-name {
+  font-size: 16px;
+}
+
+/* 下拉箭头 */
+#arrowBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 用户菜单 */
+.user-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 140px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+
+.user-menu li {
+  padding: 10px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.user-menu li:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* ========== 通用按钮 ========== */
+
+.btn {
+  background: #1a1a1a;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn.active {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+  color: #fff;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== Room Chips ========== */
+
+.room-chips {
+  grid-column: 1 / 13;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* 所有 chips */
+.chip {
+  padding: 10px 24px;
+  border-radius: 14px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #7a7a7a;
+  cursor: pointer;
+  transition: 0.25s;
+  text-align: center;
+}
+
+/* 选中状态 */
+.chip.active {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+  color: #000;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* hover 状态 */
+.chip:hover {
+  color: #ccc;
+}
+
+/* + Add 按钮 */
+.chip-add {
+  margin-left: auto;
+  padding: 10px 14px;
+  color: #8ea1b8;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.25s;
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.chip-add:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* ========== Air Conditioner Card ========== */
+
+.ac-card {
+  grid-column: 1 / 5; /* 左侧 4 列 */
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  height: 100%; /* 撑满所在 grid 行 */
+}
+
+/* Header */
+.ac-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ac-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Toggle Button */
+.ac-toggle {
+  width: 46px;
+  height: 24px;
+  border-radius: 24px;
+  background: #444;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s;
+}
+
+.ac-toggle::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: #bbb;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: 0.25s;
+}
+
+/* ON State */
+.ac-toggle.on {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+}
+
+.ac-toggle.on::after {
+  left: 25px;
+  background: #fff;
+}
+
+/* Temperature display */
+.ac-temp-display {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#acTempValue {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #74dbff, #c091ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.ac-temp-label {
+  margin-top: -8px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Slider */
+.ac-slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ac-slider-container input[type="range"] {
+  width: 60%;
+  accent-color: #b68cff;
+}
+
+.min-temp,
+.max-temp {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Mode Buttons */
+.ac-modes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.mode-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  border: none;
+  font-size: 22px;
+  background: #333;
+  color: #777;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mode-btn.active {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+  color: #fff;
+}
+
+/* ========== Usage Status ========== */
+
+.usage-status {
+  grid-column: 5 / 13; /* 右侧 8 列 */
+  background: #000;
+  padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+  box-sizing: border-box;
+  height: 100%; /* 和 AC 一起拉齐高度 */
+}
+
+/* 顶部区域 */
+.usage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usage-controls {
+  display: flex;
+  gap: 10px;
+}
+
+/* 下拉框 */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 44px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0;
+  list-style: none;
+  display: none;
+  width: 140px;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.dropdown-menu li:hover,
+.dropdown-menu li.active {
+  background: #333;
+  color: #fff;
+}
+
+/* 数据展示 */
+.usage-data {
+  display: flex;
+  gap: 100px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.label {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* ===== Dashboard Bar Chart (独立于 Utilities) ===== */
+
+.dashboard-chart-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.dashboard-chart {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.dashboard-bar {
+  width: 32px;
+  background: #333;
+  border-radius: 8px;
+  position: relative;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+/* hover 高亮 */
+.dashboard-bar:hover {
+  background: linear-gradient(180deg, #74dbff, #c091ff);
+  transform: translateY(-4px);
+}
+
+/* 气泡 */
+.dashboard-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #74dbff, #c091ff);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #000;
+  display: none;
+  white-space: nowrap;
+}
+
+.dashboard-bar:hover .dashboard-tooltip {
+  display: block;
+}
+
+/* ========== Devices Component ========== */
+
+.devices {
+  grid-column: 1 / 9; /* 左下 8 列 */
+  color: #fff;
+  margin-top: 40px;
+  box-sizing: border-box;
+}
+
+.devices-heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* 2x3 网格 + 边框 */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 100%;
+  height: 407px;
+  border: 1px solid #393939;
+  border-right: none;
+  border-bottom: none;
+  background: #050505;
+}
+
+.device-card {
+  border-right: 1px solid #393939;
+  border-bottom: 1px solid #393939;
+  position: relative;
+  padding: 20px;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 顶部：图标 + 开关 */
+.device-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.device-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #222;
+  padding: 8px;
+}
+
+/* toggle 开关 */
+.device-toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: #333;
+  position: relative;
+}
+
+.device-toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #777;
+  transition: 0.2s;
+}
+
+/* 开启状态示例 */
+.device-toggle.on {
+  background: linear-gradient(90deg, #6ae0ff, #c18bff);
+}
+
+.device-toggle.on::after {
+  left: 23px;
+  background: #fff;
+}
+
+/* 中间：标题 + 副标题 */
+.device-main {
+  margin-top: 16px;
+}
+
+.device-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.device-sub {
+  font-size: 12px;
+  color: #7a7a7a;
+}
+
+/* 底部：— 5Kwh */
+.device-footer {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.device-dash {
+  color: #7a7a7a;
+}
+
+.device-power {
+  color: #a6d7ff;
+  font-weight: 600;
+}
+
+/* ========== Light Component ========== */
+
+#light-demo {
+  grid-column: 9 / 13; /* 右下 4 列 */
+  box-sizing: border-box;
+}
+
+#light-demo > h2 {
+  margin: 0 0 16px;
+}
+
+/* Light 卡片本体 */
+.light-card {
+  background: #15151B;
+  padding: 24px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #E8E9ED;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 一行 Light 项 */
+.light-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 左：图标 + 文案 */
+.light-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.light-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.light-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 中间：圆点进度条 */
+.light-center {
+  display: flex;
+  align-items: center;
+}
+
+.dot-progress {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3E3E44; /* 未激活 */
+}
+
+/* 激活状态（亮色） */
+.dot.active {
+  background: linear-gradient(90deg, #7BD5FF, #A18CFF);
+  box-shadow: 0 0 6px #7BD5FF;
+}
+
+/* 百分比数字 */
+.percentage {
+  margin-left: 8px;
+  font-size: 12px;
+  color: #C6C6C9;
+}
+
+/* 小的 user-select 限制，防止频繁误选中文字 */
+.label,
+.value,
+.devices-heading,
+.header-title,
+.ac-title {
+  user-select: none;
+}
+
+
+
+
+
+
+
+
+/* ===== Utilities Page ===== */
+.content-container {
+    max-width: 1200px;      /* 内容宽度和 Dashboard 一致 */
+    margin: 0 auto;         /* 居中 */
+    padding: 24px 0 48px;   /* 上下留白 */
+}
+
+
+/* Utilities 顶部标题 + 切换条 */
+/* 顶部：标题 + 类型切换 */
+.bill-header {
+  display: flex;
+  justify-content: space-between;  /* 左右两块拉开 */
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+
+
+
+
+
+
+/* 右上角 Details 按钮样式 */
+.bill-details-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #141419;
+  border: 1px solid #292935;
+  color: #e4e7ff;
+  font-size: 14px;
+  align-self: flex-start;       /* 顶到上边对齐标题 */
+  margin-left: 24px;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: 0.2s ease;
+}
+
+.bill-details-btn::after {
+  content: "›";
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.bill-details-btn:hover {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+  border-color: transparent;
+  color: #000;
+  box-shadow: 0 0 14px rgba(116, 219, 255, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 标题 + tabs 竖着排 */
+.bill-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.bill-subtitle {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #888fa3;
+}
+
+
+/* 三个小 chip 容器 */
+.bill-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+/* 单个 chip 外观（参考上面的房间 chips，缩小一点） */
+.bill-chip {
+    padding: 6px 18px;
+    border-radius: 999px;
+    border: none;
+    background: #141419;
+    color: #9ea4b8;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* hover 稍微亮一点 */
+.bill-chip:hover {
+    background: #1b1b23;
+    color: #dde3ff;
+}
+
+/* 选中态：用全局渐变色 */
+.bill-chip.active {
+    background: linear-gradient(90deg, #74dbff, #b68cff);
+    color: #000;
+}
+
+
+
+/* Utilities 的月份选择条 */
+.bill-month-chips {
+    border-top: 1px solid #15151c;
+    padding-top: 16px;
+    margin-top: 8px;
+}
+
+/* 只改 Utilities 内的 month chips 样式 */
+.bill-month-chips .chip {
+    padding: 8px 18px;
+    font-size: 14px;
+    color: #8f96aa;
+    background: transparent;
+}
+
+/* hover 稍微亮一点 */
+.bill-month-chips .chip:not(.active):hover {
+    background: #14141c;
+    color: #dde3ff;
+}
+
+/* 激活态：渐变 + 立体一点 */
+.bill-month-chips .chip.active {
+    background: linear-gradient(90deg, #74dbff, #b68cff);
+    color: #000;
+    box-shadow: 0 4px 14px rgba(116, 219, 255, 0.35);
+}
+
+
+
+
+
+
+
+
+
+/* 3 小卡片 */
+.bill-overview-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 16px 0 32px;
+}
+
+.bill-card {
+    background: #0F0F14;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #1F1F22;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    transition: 0.2s ease;
+}
+
+
+/* hover 轻轻浮起来 */
+.bill-card:hover {
+    transform: translateY(-4px);
+    border-color: #2a2a33;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75);
+}
+
+
+.bill-card .label {
+    color: #999;
+    font-size: 14px;
+}
+
+.bill-card .value {
+    margin-top: 6px;
+    font-size: 26px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #74dbff, #b68cff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+
+
+
+
+/* card 顶部：标题 + 小 badge */
+.bill-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+/* 右上角小标签 */
+.bill-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #15151f;
+    color: #9da4c0;
+    font-size: 11px;
+}
+
+/* 底部两三个小信息 */
+.bill-meta {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+}
+
+/* 小 pill */
+.bill-pill {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #121218;
+    border: 1px solid #252531;
+    color: #a4abc0;
+}
+
+/* 上升 / 下降 用不同颜色 */
+.bill-pill.up {
+    color: #35cf98;
+    border-color: rgba(53, 207, 152, 0.4);
+}
+
+.bill-pill.down {
+    color: #ff6a7a;
+    border-color: rgba(255, 106, 122, 0.4);
+}
+
+
+
+
+
+/* Utilities 下方时间粒度切换 */
+.usage-status .btn {
+    padding: 6px 16px;
+    font-size: 13px;
+    border-radius: 999px;
+}
+
+.usage-status .btn:not(.active) {
+    background: #15151c;
+    color: #a1a6b8;
+}
+
+
+
+
+/* 柱状图 + 饼图 组合布局 */
+.usage-layout {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    margin-top: 12px;
+}
+
+/* 左边柱状图区域稍微矮一点，不那么占空间 */
+.utilities-chart-container {
+    flex: 2;
+    height: 220px;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* 右侧饼图卡片 */
+.usage-pie-card {
+    flex: 1;
+    background: #05050a;
+    border-radius: 16px;
+    border: 1px solid #1f1f22;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.usage-pie-card h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.usage-pie-card .subtitle {
+    margin: 0;
+    font-size: 12px;
+    color: #8a90a4;
+}
+
+/* 圆环图本体 */
+.pie-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 4px auto 0;
+}
+
+.pie-chart {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* 52% 电、28% 水、20% 气 —— 你可以按需要改比例 */
+    background: conic-gradient(
+        #74dbff 0 52%,
+        #4fd1c5 52% 80%,
+        #fb7185 80% 100%
+    );
+}
+
+/* 中心小圆，显示总费用 */
+.pie-center {
+    position: absolute;
+    inset: 24px;
+    border-radius: 50%;
+    background: #05050a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pie-value {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.pie-label {
+    font-size: 11px;
+    color: #8a90a4;
+}
+
+/* 右侧图例 */
+.pie-legend {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.pie-legend li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.legend-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+}
+
+.legend-dot.elec {
+    background: #74dbff;
+}
+
+.legend-dot.water {
+    background: #4fd1c5;
+}
+
+.legend-dot.gas {
+    background: #fb7185;
+}
+
+.legend-percent {
+    color: #cfd4ff;
+}
+
+/* 让饼图和中心有动画过渡 */
+.pie-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 4px auto 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+
+
+
+
+
+/* ==== 饼图高亮状态（配合 JS 的 highlight-XXX 类） ==== */
+
+/* 默认颜色参考：
+   #74dbff 0 52%,
+   #4fd1c5 52% 80%,
+   #fb7185 80% 100%
+*/
+
+.pie-chart.highlight-elec {
+    background: conic-gradient(
+        #b3f0ff 0 52%,                 /* Electricity 更亮 */
+        rgba(79, 209, 197, 0.25) 52% 80%,
+        rgba(251, 113, 133, 0.25) 80% 100%
+    );
+}
+
+.pie-chart.highlight-water {
+    background: conic-gradient(
+        rgba(116, 219, 255, 0.25) 0 52%,
+        #a4ffe6 52% 80%,               /* Water 更亮 */
+        rgba(251, 113, 133, 0.25) 80% 100%
+    );
+}
+
+.pie-chart.highlight-gas {
+    background: conic-gradient(
+        rgba(116, 219, 255, 0.25) 0 52%,
+        rgba(79, 209, 197, 0.25) 52% 80%,
+        #ffc0cf 80% 100%               /* Gas 更亮 */
+    );
+}
+
+/* 图例选中状态（和 hover 视觉一致） */
+.pie-legend li.active .legend-dot,
+.pie-legend li:hover .legend-dot {
+    transform: scale(1.25);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.pie-legend li.active span:not(.legend-percent),
+.pie-legend li:hover span:not(.legend-percent) {
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.pie-chart {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* 默认颜色 */
+    --elec-color: #74dbff;
+    --water-color: #4fd1c5;
+    --gas-color: #fb7185;
+
+    /* 暗下去时用的颜色 */
+    --elec-muted: #1c2231;
+    --water-muted: #142623;
+    --gas-muted: #2b1820;
+
+    background: conic-gradient(
+        var(--elec-color) 0 52%,   /* Electricity 0–52% */
+        var(--water-color) 52% 80%,/* Water 52–80% */
+        var(--gas-color) 80% 100%  /* Gas 80–100% */
+    );
+    transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pie-center {
+    position: absolute;
+    inset: 24px;
+    border-radius: 50%;
+    background: #05050a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.pie-value {
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+/* ===== 整个饼图 hover 效果 ===== */
+.usage-pie-card:hover .pie-wrapper {
+    transform: scale(1.04);
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
+}
+
+.usage-pie-card:hover .pie-chart {
+    transform: scale(1.02);
+    filter: saturate(1.2) brightness(1.05);
+    box-shadow: 0 0 20px rgba(116, 219, 255, 0.35);
+}
+
+.usage-pie-card:hover .pie-center {
+    transform: scale(0.96);
+    background: #05050f;
+}
+
+.usage-pie-card:hover .pie-value {
+    color: #74dbff;
+}
+
+/* ===== 图例 hover：小圆点放大 + 高亮 ===== */
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pie-legend li:hover .legend-dot {
+    transform: scale(1.25);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.pie-legend li:hover span:not(.legend-percent) {
+    /* 左边文字稍微亮一点 */
+    color: #ffffff;
+}
+
+
+
+/* 高亮 Electricity：它变亮，其他两块变暗 */
+.pie-chart.highlight-elec {
+    --elec-color: #b7f2ff;
+    --water-color: var(--water-muted);
+    --gas-color: var(--gas-muted);
+    filter: saturate(1.25) brightness(1.03);
+}
+
+/* 高亮 Water */
+.pie-chart.highlight-water {
+    --water-color: #7ef5e1;
+    --elec-color: var(--elec-muted);
+    --gas-color: var(--gas-muted);
+    filter: saturate(1.25) brightness(1.03);
+}
+
+/* 高亮 Gas */
+.pie-chart.highlight-gas {
+    --gas-color: #ff91a3;
+    --elec-color: var(--elec-muted);
+    --water-color: var(--water-muted);
+    filter: saturate(1.25) brightness(1.03);
+}
+
+/* 图例被选中时样式（给 JS 用） */
+.pie-legend li.active {
+    color: #ffffff;
+}
+
+.pie-legend li.active .legend-percent {
+    color: #ffffff;
+}
+
+.pie-legend li.active .legend-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 10px currentColor;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Enhanced Bar Chart for Utilities ===== */
+
+/* 图表外部容器（与 Dashboard 不冲突） */
+.utilities-chart-container {
+    width: 100%;
+    height: 260px;
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* 图表的主 Flex 容器 */
+.utilities-chart {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+    height: 100%;
+}
+
+/* 每个柱子+标签的容器 */
+.utilities-chart .chart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* ✅ 柱子和标签都贴底 */
+    gap: 8px;
+    height: 100%;             /* ✅ 关键：让 bar 的百分比是 260px 的百分比 */
+}
+
+
+/* 每天的标签 */
+.utilities-chart .chart-label {
+    font-size: 13px;
+    color: #999;
+    user-select: none;
+}
+
+/* 基础柱子样式 */
+.utilities-chart .bar {
+    width: 32px;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    background: #262626;
+    transition: 0.25s ease;
+}
+
+/* 鼠标悬停动画 */
+.utilities-chart .bar:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(117, 208, 255, 0.2);
+}
+
+/* 三种柱子亮度 */
+.utilities-chart .bar-high {
+    background: linear-gradient(180deg, #7edaff, #a48cff);
+}
+
+.utilities-chart .bar-medium {
+    background: linear-gradient(180deg, #6ec9ff, #b49eff);
+}
+
+.utilities-chart .bar-low {
+    background: linear-gradient(180deg, #4e4e52, #2c2c2c);
+}
+
+/* tooltip */
+.utilities-chart .tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 10px;
+    background: #fff;
+    color: #111;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-size: 12px;
+    display: none;
+    font-weight: 600;
+}
+
+/* tooltip 动画 */
+.utilities-chart .bar:hover .tooltip {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -6px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+
+
+
+
+/* ===== Pie 基础配色（和现在一致就行）====== */
+.usage-pie-card .pie-chart {
+  --pie-elec: #1fb7ff;     /* Electricity */
+  --pie-water: #4fd1c5;    /* Water */
+  --pie-gas: #fb7185;      /* Gas */
+
+  background:
+    conic-gradient(
+      var(--pie-elec) 0 52%,
+      var(--pie-water) 52% 80%,
+      var(--pie-gas) 80% 100%
+    );
+}
+
+/* 高亮 Electricity：只让第一块亮，另外两块变暗 */
+.usage-pie-card .pie-chart.highlight-elec {
+  background:
+    conic-gradient(
+      #7df3ff 0 52%,                                /* Elec 亮 */
+      rgba(79, 209, 197, .25) 52% 80%,             /* Water 暗 */
+      rgba(251, 113, 133, .20) 80% 100%            /* Gas 暗 */
+    );
+  filter: drop-shadow(0 0 18px rgba(125, 243, 255, .6));
+}
+
+/* 高亮 Water：第二块亮 */
+.usage-pie-card .pie-chart.highlight-water {
+  background:
+    conic-gradient(
+      rgba(31, 183, 255, .25) 0 52%,               /* Elec 暗 */
+      #8cf5df 52% 80%,                             /* Water 亮 */
+      rgba(251, 113, 133, .20) 80% 100%            /* Gas 暗 */
+    );
+  filter: drop-shadow(0 0 18px rgba(140, 245, 223, .6));
+}
+
+/* 高亮 Gas：第三块亮 */
+.usage-pie-card .pie-chart.highlight-gas {
+  background:
+    conic-gradient(
+      rgba(31, 183, 255, .25) 0 52%,               /* Elec 暗 */
+      rgba(79, 209, 197, .25) 52% 80%,             /* Water 暗 */
+      #ffa3b5 80% 100%                             /* Gas 亮 */
+    );
+  filter: drop-shadow(0 0 18px rgba(255, 163, 181, .7));
+}
+
+
+
+
+
+
+/* ========== Utilities Details Page ========== */
+
+/* 顶部标题区域 */
+.details-header {
+    grid-column: 1 / 13;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 8px 0 8px;    /* 原来如果写了 24/32 之类的，这里统一压成 8px */
+}
+
+.details-header .devices-heading {
+    margin: 0;
+}
+.details-header .bill-subtitle {
+    margin: 4px 0 0;
+}
+
+
+.details-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid #2a2a36;
+  color: #cfd4ff;
+}
+
+.btn-ghost:hover {
+  background: #181822;
+}
+
+/* 筛选条 */
+/* 筛选条卡片 */
+.utilities-filters {
+  background: #06060a;
+  border-radius: 14px;
+  border: 1px solid #1c1c26;
+  padding: 10px 28px;       /* 高一点，左右更宽 */
+  margin-bottom: 18px;
+}
+
+/* 一整排平均铺开，不再挤在左侧 */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;   /* 左右拉开 */
+  row-gap: 16px;
+  column-gap: 24px;
+}
+
+/* 每个 filter 块再大一点 */
+.filter-group {
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-size: 13px;
+  color: #8c91a8;
+}
+
+/* 下拉框变大一点 */
+.filter-select {
+  min-width: 180px;
+  height: 40px;               /* 原来 34px */
+  border-radius: 12px;
+  border: 1px solid #262637;
+  background: #10101a;
+  color: #e2e6ff;
+  font-size: 14px;
+  padding: 0 12px;
+}
+
+/* 类型 chips 更饱满一点 */
+.filter-chips {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-chip {
+  padding: 8px 18px;          /* 原来 6px 左右 */
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  background: #14141d;
+  color: #a5abc2;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter-chip:hover {
+  background: #1b1b27;
+  color: #e5e9ff;
+}
+
+.filter-chip.active {
+  background: linear-gradient(90deg, #74dbff, #b68cff);
+  color: #000;
+}
+
+/* 搜索块：不再用 margin-left:auto 挤它，而是让它占一段宽度 */
+.filter-group-search {
+  margin-left: 0;            /* 把之前的 auto 去掉 */
+  flex: 1;
+  min-width: 240px;
+  max-width: 320px;
+}
+
+.filter-search-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid #262637;
+  background: #10101a;
+}
+
+.filter-search-input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #e2e6ff;
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.filter-search-input img {
+  width: 14px;
+  opacity: 0.7;
+}
+
+/* 表格卡片 */
+.utilities-table-card {
+  background: #050509;
+  border-radius: 16px;
+  border: 1px solid #1d1d29;
+  padding: 18px 20px 14px;
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.table-summary {
+  font-size: 13px;
+  color: #8d92aa;
+}
+
+.table-toolbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* 表格本体 */
+.utilities-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.utilities-table thead {
+  background: #090912;
+}
+
+.utilities-table th,
+.utilities-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #191923;
+}
+
+.utilities-table th {
+  font-weight: 500;
+  color: #8f95ac;
+}
+
+.utilities-table tbody tr:hover {
+  background: rgba(116, 219, 255, 0.06);
+}
+
+/* 状态 pill */
+.status-pill {
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-paid {
+  background: rgba(80, 202, 120, 0.14);
+  color: #75e09b;
+}
+
+.status-unpaid {
+  background: rgba(240, 191, 76, 0.15);
+  color: #ffd47b;
+}
+
+.status-overdue {
+  background: rgba(255, 87, 110, 0.16);
+  color: #ff8a9e;
+}
+
+/* 分页 */
+.table-pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #868bad;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}

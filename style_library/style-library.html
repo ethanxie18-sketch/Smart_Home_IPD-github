@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Style Library – Smart Home </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="style-library-body">
+    <main class="style-library-page">
+        <!-- ================= Header ================= -->
+        <header class="sl-header">
+            <h1>Style Library – Smart Home </h1>
+            <p>Global foundation, core components, layout & interaction states.</p>
+        </header>
+
+        <!-- ============== 1. Global Foundation ============== -->
+        <section class="sl-section" id="foundation">
+            <h2>1. Global Foundation</h2>
+
+            <div class="sl-subtitle">Color Palette</div>
+            <div class="sl-color-row">
+                <div class="sl-color-swatch sl-color-primary">Primary</div>
+                <div class="sl-color-swatch sl-color-surface">Surface</div>
+                <div class="sl-color-swatch sl-color-accent">Accent</div>
+                <div class="sl-color-swatch sl-color-danger">Danger</div>
+            </div>
+
+            <div class="sl-subtitle">Typography</div>
+            <div class="sl-typography">
+                <h1 class="header-title">Dashboard Title / H1</h1>
+                <h2 class="devices-heading">Section Title / H2</h2>
+                <p class="label">Body text example / label text</p>
+            </div>
+        </section>
+
+        <!-- ============== 2. Core Components ============== -->
+        <section class="sl-section" id="components">
+            <h2>2. Core Components</h2>
+
+            <!-- Buttons -->
+            <div class="sl-subtitle">Buttons</div>
+            <div class="sl-row">
+                <button class="btn">Default</button>
+                <button class="btn active">Primary / Active</button>
+                <button class="header-icon icon-btn">
+                    <span>Icon</span>
+                </button>
+            </div>
+
+            <!-- Room Chips -->
+            <div class="sl-subtitle">Room Chips</div>
+            <section class="room-chips">
+                <button class="chip active">Living Room</button>
+                <button class="chip">Kitchen Room</button>
+                <button class="chip">Bed Room</button>
+                <button class="chip">Movie Room</button>
+                <button class="chip">Game Room</button>
+                <button class="chip-add">+ Add</button>
+            </section>
+
+            <!-- AC Card -->
+            <div class="sl-subtitle">Card – Air Conditioner</div>
+            <section class="ac-card">
+                <div class="ac-header">
+                    <div class="ac-title">AC – Living Room</div>
+                    <button class="ac-toggle on"></button>
+                </div>
+
+                <div class="ac-temp-display">
+                    <span id="acTempValue">22</span>
+                    <div class="ac-temp-label">Target Temperature (°C)</div>
+                </div>
+
+                <div class="ac-slider-container">
+                    <span class="min-temp">16°</span>
+                    <input id="acSlider" type="range" min="16" max="30" value="22">
+                    <span class="max-temp">30°</span>
+                </div>
+
+                <div class="ac-modes">
+                    <button class="mode-btn active">❄</button>
+                    <button class="mode-btn">●</button>
+                    <button class="mode-btn">☀</button>
+                </div>
+            </section>
+
+            <!-- Usage Status Card -->
+            <div class="sl-subtitle">Card – Usage Status</div>
+            <section class="usage-status">
+                <div class="usage-header">
+                    <h3>Usage Status</h3>
+                    <div class="usage-controls">
+                        <button class="btn">Day</button>
+                        <button class="btn active">Week</button>
+                        <button class="btn">Month</button>
+                    </div>
+                </div>
+
+                <div class="usage-data">
+                    <div>
+                        <div class="label">Today</div>
+                        <div class="value">24.7 kWh</div>
+                    </div>
+                    <div>
+                        <div class="label">This Week</div>
+                        <div class="value">143.2 kWh</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart">
+                        <div class="bar" style="height: 40%;">
+                            <div class="tooltip">Mon – 12.4</div>
+                        </div>
+                        <div class="bar" style="height: 65%;">
+                            <div class="tooltip">Tue – 18.9</div>
+                        </div>
+                        <div class="bar" style="height: 80%;">
+                            <div class="tooltip">Wed – 22.3</div>
+                        </div>
+                        <div class="bar" style="height: 50%;">
+                            <div class="tooltip">Thu – 14.1</div>
+                        </div>
+                        <div class="bar" style="height: 70%;">
+                            <div class="tooltip">Fri – 19.5</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Device Card -->
+            <div class="sl-subtitle">Card – Device</div>
+            <section class="devices">
+                <div class="devices-heading">Single Device Card</div>
+                <div class="devices-grid">
+                    <article class="device-card">
+                        <div class="device-header">
+                            <div class="device-icon">
+                                <!-- 这里可以放一个 svg / img 图标 -->
+                            </div>
+                            <div class="device-toggle on"></div>
+                        </div>
+                        <div class="device-main">
+                            <div class="device-name">Ceiling Lamp</div>
+                            <div class="device-sub">Living Room · 2 devices</div>
+                        </div>
+                        <div class="device-footer">
+                            <span class="device-dash">—</span>
+                            <span class="device-power">5 kWh</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Light Card -->
+            <div class="sl-subtitle">Card – Light</div>
+            <section id="light-demo">
+                <div class="light-card">
+                    <div class="light-row">
+                        <div class="light-left">
+                            <div class="light-icon">
+                                <!-- icon -->
+                            </div>
+                            <span class="light-name">Light 1</span>
+                        </div>
+                        <div class="light-center">
+                            <div class="dot-progress" data-value="60">
+                                <span class="dot active"></span>
+                                <span class="dot active"></span>
+                                <span class="dot active"></span>
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <span class="percentage">60%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ============== 3. Layout & Interaction Notes ============== -->
+        <section class="sl-section" id="layout">
+            <h2>3. Layout &amp; Interaction Rules</h2>
+            <div class="sl-subtitle">Layout</div>
+            <p class="label">
+                Main Dashboard uses a two-column shell:
+                left fixed sidebar (260px) and right 12-column content grid.
+            </p>
+            <ul>
+                <li>Header spans 12 columns.</li>
+                <li>Room chips also span 12 columns under header.</li>
+                <li>AC card takes 4 columns; usage status takes the other 8 columns in the same row.</li>
+                <li>Devices and Light cards are placed in the next row (8 + 4 columns).</li>
+            </ul>
+
+            <div class="sl-subtitle">Interaction States</div>
+            <ul>
+                <li><code>.chip.active</code> – selected room.</li>
+                <li><code>.btn.active</code> – primary action / selected filter.</li>
+                <li><code>.ac-toggle.on</code> – AC power on.</li>
+                <li><code>.mode-btn.active</code> – current AC mode.</li>
+                <li><code>.device-toggle.on</code> – device power on.</li>
+                <li><code>.menu-item.active</code> – current sidebar menu item.</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
